@@ -26,7 +26,6 @@ export function getStudentById(id) {
 
 export function updateStudent(id, student) {
   const currentStudent = getStudentById(id);
-  
   currentStudent.fullName = student.fullName;
   currentStudent.gender = student.gender;
   currentStudent.department = student.department;
@@ -35,9 +34,7 @@ export function updateStudent(id, student) {
 }
 
 export function deleteStudent(id) {
-  const indexInArray = STUDENTS.findIndex(student => student.id === id);
-  if (indexInArray === -1) {
-    throw new NotFoundError("student not found");
-  }
-  STUDENTS.splice(indexInArray, 1);
+  const student = getStudentById(id);
+  index = STUDENTS.indexOf(student);
+  STUDENTS.splice(index, 1);
 }
