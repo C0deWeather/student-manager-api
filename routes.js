@@ -1,4 +1,4 @@
-import express from 'express'; nm
+import express from 'express';
 import { validateStudent, validateId } from './validators.js';
 import {
     addStudent,
@@ -16,19 +16,25 @@ router.post('/', (req, res) => {
     res.status(201).json({
         status: 'success',
         message: 'student successfully added',
-        student: student 
+        student
     });
 });
 
 router.get('/', (req, res) => {
     const students = getAllStudents();
-    res.json(students);
+    res.json({
+        status: 'success',
+        students
+    });
 });
 
 router.get('/:id', (req, res) => {
     const studentId = validateId(req.params.id);
     const student = getStudentById(studentId);
-    res.json(student);
+    res.json({
+        status: 'success',
+        student
+    });
 });
 
 router.put('/:id', (req, res) => {
@@ -41,13 +47,11 @@ router.put('/:id', (req, res) => {
         student
     });
 });
+
 router.delete('/:id', (req, res) => {
     const studentId = validateId(req.params.id);
     deleteStudent(studentId);
-    res.json({
-        status: 'success',
-        message: 'student succesfully deleted',
-    });
+    res.sendStatus(204);
 });
 
 export default router;
