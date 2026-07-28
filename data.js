@@ -1,4 +1,4 @@
-import { NotFoundError, ValidationError } from './errors.js';
+import { NotFoundError } from './errors.js';
 
 const STUDENTS = [];
 let nextId = 1;
@@ -29,7 +29,7 @@ export function updateStudent(id, student) {
   
   currentStudent.fullName = student.fullName;
   currentStudent.gender = student.gender;
-  currentStaudent.department = student.department;
+  currentStudent.department = student.department;
   currentStudent.level = student.level;
   return currentStudent;
 }
@@ -39,5 +39,5 @@ export function deleteStudent(id) {
   if (indexInArray === -1) {
     throw new NotFoundError("student not found");
   }
-  tasks.splice(indexInArray, 1);
+  STUDENTS.splice(indexInArray, 1);
 }
