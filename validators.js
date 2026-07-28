@@ -1,25 +1,18 @@
 import { ValidationError } from './errors.js';
 
-export function validateStudent(task) {
-	let { fullName, gender, department, level } = Student;
+const VALID_LEVELS = ['100', '200', '300', '400', 500', '600'];
+
+export function validateStudent(student) {
+	let { fullName, gender, department, level } = student;
 	
-	if (typeof title !== "string" || typeof status !== "string") {
-		throw new ValidationError("invalid fields");
+	return {
+		fullName: validateName(fullName),
+		gender: validateGender(gender),
+		department: validateDepartment(department),
+		level: validateLevel(level)
 	}
-
-	title = title.toLowerCase().trim();
-	status = status.toLowerCase().trim();
-
-	if (!title || !status) {
-		throw new ValidationError("one or more fields are empty");
-	}
-	
-	if (status !== 'pending' && status !== 'completed') {
-		throw new ValidationError("invalid status value");
-	}
-
-	return { title, status };
 }
+
 export function validateName(name) {
     if (typeof name !== "string") {
 		throw new ValidationError("invalid name");
@@ -28,14 +21,14 @@ export function validateName(name) {
     if (!validatedName) {
 		throw new ValidationError("name field cannot be empty");
 	}
-    return validatedName
+    return validatedName;
 }
 
 export function validateDepartment(department) {
     if (typeof department !== "string") {
 		throw new ValidationError("invalid departmant name");
 	}
-    const validatedDepartment = field.trim();
+    const validatedDepartment = department.trim();
     if (!validatedDepartment) {
 		throw new ValidationError("department field cannot be empty");
 	}
@@ -43,9 +36,7 @@ export function validateDepartment(department) {
 }
 
 export function validatelevel(level) {
-    const VALID_LEVELS = ['100', '200', '300', '400', 500', '600'];
-
-    if (typeof leve !== "string") {
+    if (typeof level !== "string") {
 		throw new ValidationError("invalid level");
 	}
     const normalisedLevel = level.trim();
@@ -63,10 +54,10 @@ export function validateGender(gender) {
 		throw new ValidationError("invalid gender");
 	}
     const normalisedGender = gender.toLowerCase().trim();
-    if (!validatedName) {
+    if (!validatedGender) {
 		throw new ValidationError("name field cannot be empty");
 	}
-    if (normalisedGender !== 'male' && status !== 'female') {
+    if (!['male', 'female'].includes(normalisedGender)) {
 		throw new ValidationError("invalid gender value");
 	}
     return normalisedGender;
