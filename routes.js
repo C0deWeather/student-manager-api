@@ -1,5 +1,4 @@
-import express from 'express';
-import { ValidationError, NotFoundError } from './errors.js';
+import express from 'express'; nm
 import { validateStudent, validateId } from './validators.js';
 import {
     addStudent,
@@ -34,11 +33,12 @@ router.get('/:id', (req, res) => {
 
 router.put('/:id', (req, res) => {
     const studentId = validateId(req.params.id);
-    const student = validateStudent(req.body);
-    updateStudent(studentId, student);
+    const updatedStudent = validateStudent(req.body);
+    const student = updateStudent(studentId, updatedStudent);
     res.json({
         status: 'success',
         message: 'student data successfully updated',
+        student
     });
 });
 router.delete('/:id', (req, res) => {
