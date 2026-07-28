@@ -19,5 +19,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(port, () => {
-  console.log(`todos app listening on port ${port}`)
+  console.log(`app listening on port ${port}`)
 });
