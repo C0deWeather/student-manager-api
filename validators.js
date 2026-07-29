@@ -1,6 +1,6 @@
 import { ValidationError } from './errors.js';
 
-const VALID_LEVELS = ['100', '200', '300', '400', 500', '600'];
+const VALID_LEVELS = ['100', '200', '300', '400', '500', '600'];
 
 export function validateStudent(student) {
 	let { fullName, gender, department, level } = student;
@@ -35,7 +35,7 @@ export function validateDepartment(department) {
     return validatedDepartment;
 }
 
-export function validatelevel(level) {
+export function validateLevel(level) {
     if (typeof level !== "string") {
 		throw new ValidationError("invalid level");
 	}
@@ -43,7 +43,7 @@ export function validatelevel(level) {
     if (!normalisedLevel) {
 		throw new ValidationError("level field cannot be empty");
 	}
-    if (!VALID_LEVELS.includes(normalisedLevel) {
+    if (!VALID_LEVELS.includes(normalisedLevel)) {
 		throw new ValidationError("invalid level value");
 	}
     return normalisedLevel;
@@ -54,7 +54,7 @@ export function validateGender(gender) {
 		throw new ValidationError("invalid gender");
 	}
     const normalisedGender = gender.toLowerCase().trim();
-    if (!validatedGender) {
+    if (!normalisedGender) {
 		throw new ValidationError("name field cannot be empty");
 	}
     if (!['male', 'female'].includes(normalisedGender)) {
